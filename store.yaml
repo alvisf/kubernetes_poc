@@ -2,32 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverser
+  name: store-products
   labels:
-    app: reverser
+    app: store-products
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: reverser
+      app: store-products
   template:
     metadata:
       labels:
-        app: reverser
+        app: store-products
     spec:
       containers:
-        - name: reverser
-          image: rajacsp/flask-reverse-string
+        - name: store-products
+          image: linuxacademycontent/store-products:1.0.0
           ports:
             - containerPort: 80
-
+---
 kind: Service
 apiVersion: v1
 metadata:
-  name: reverser
+  name: store-products
 spec:
   selector:
-    app: reverser
+    app: store-products
   type: ClusterIP
   ports:
     - protocol: TCP
